@@ -1,3 +1,3 @@
-client_ID = "e3adb77535dd4e0186f29e81979b42d4"
-client_SECRET = "30aba4f606294a33ad00f6f06d9b32b5"
-redirect_url = "https://accounts.spotify.com/authorize?client_id=e3adb77535dd4e0186f29e81979b42d4&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2F&scope=user-read-recently-played"
+client_ID = "3549e5d78d5a47acbfce6da7df8846d2"
+client_SECRET = "300aea65c62341d89c3d54b29dd0aef0"
+redirect_url = "https://localhost:"

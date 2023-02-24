@@ -5,7 +5,7 @@ import cred
 scope = "user-top-read"
 sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cred.client_ID, client_secret = cred.client_SECRET, redirect_uri = cred.redirect_url, scope = scope))
 
-results = sp.current_user_top_tracks(limit = 20, time_range = "long_term")
+results = sp.current_user_top_tracks(limit = 50, time_range = "long_term")
 
 
 for idx, item in enumerate(results["items"]):
