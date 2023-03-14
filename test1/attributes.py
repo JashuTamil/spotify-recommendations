@@ -1,4 +1,5 @@
 import spotipy
+import pickle
 from spotipy.oauth2 import SpotifyOAuth
 import cred
 
@@ -25,7 +26,6 @@ for idx, item in enumerate(results["items"]):
             else:
                 artists += "and " + trackInfo["artists"][x]["name"]
                 
-    print(idx + 1, trackInfo["name"], "from", trackInfo["album"]["name"], "by", artists)
 
 audioFeatures = sp.audio_features(audioReading)
 for i in range(len(audioFeatures)):
@@ -33,5 +33,7 @@ for i in range(len(audioFeatures)):
         audioFeatures[i].pop(k, None)
     audioFeatures[i].update({"ranking": i + 1})
 
+
+pickle.dump(audioFeatures, open("audio.pkl", "wb"))
 print(audioFeatures)
 
