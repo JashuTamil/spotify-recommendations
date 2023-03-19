@@ -46,8 +46,19 @@ for i in range(len(audioFeatures)):
         audioFeatures[i].pop(k, None)
     audioFeatures[i].update({"ranking": i + 1})
     danceability.append(audioFeatures[i]["danceability"])
-    """ fill out the rest here """
+    energy.append(audioFeatures[i]["energy"])
+    key.append(audioFeatures[i]["key"])
+    loudness.append(audioFeatures[i]["loudness"])
+    speechiness.append(audioFeatures[i]["speechiness"])
+    acousticness.append(audioFeatures[i]["acousticness"])
+    instrumentalness.append(audioFeatures[i]["instrumentalness"])
+    liveness.append(audioFeatures[i]["liveness"])
+    valence.append(audioFeatures[i]["valence"])
+    tempo.append(audioFeatures[i]["tempo"])
+    duration.append(audioFeatures[i]["duration_ms"])
+    time_signature.append(audioFeatures[i]["time_signature"])
+    ranking.append(audioFeatures[i]["ranking"])
 
-pickle.dump((danceability, """ fill in the rest here"""), open("audio.pkl", "wb"))
+pickle.dump((danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature, ranking), open("audio.pkl", "wb"))
 
 

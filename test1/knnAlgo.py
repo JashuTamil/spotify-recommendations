@@ -5,10 +5,10 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 audioPickle = open("audio.pkl", "rb")
-audioFeatures = pickle.load(audioPickle)
+danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature, ranking = pickle.load(audioPickle)
+print(danceability)
 
-predict = "ranking"
+x = list(zip(danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature))
+y = ranking
 
-print(audioFeatures[0][predict])
-""" after new pkl file is created, make sure each and every list is accounted for. Then, make sure they're zipped to x and y (which is the ranking) """
-""" then move forward with the knn algorithm """
+print(x)
