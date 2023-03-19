@@ -5,6 +5,19 @@ import cred
 
 scope = "user-top-read"
 audioReading = []
+danceability = []
+energy = []
+key = []
+loudness = []
+speechiness = []
+acousticness = []
+instrumentalness = []
+liveness = []
+valence = []
+tempo = []
+duration = []
+time_signature = []
+ranking = []
 remove = ["mode", "type", "id", "uri", "track_href", "analysis_url"]
 sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cred.client_ID, client_secret = cred.client_SECRET, redirect_uri = cred.redirect_url, scope = scope))
 
@@ -32,8 +45,9 @@ for i in range(len(audioFeatures)):
     for k in remove:
         audioFeatures[i].pop(k, None)
     audioFeatures[i].update({"ranking": i + 1})
+    danceability.append(audioFeatures[i]["danceability"])
+    """ fill out the rest here """
 
+pickle.dump((danceability, """ fill in the rest here"""), open("audio.pkl", "wb"))
 
-pickle.dump(audioFeatures, open("audio.pkl", "wb"))
-print(audioFeatures)
 
