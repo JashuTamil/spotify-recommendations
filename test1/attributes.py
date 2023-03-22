@@ -41,7 +41,7 @@ for idx, item in enumerate(results["items"]):
                 
 
 audioFeatures = sp.audio_features(audioReading)
-print(audioFeatures)
+
 for i in range(len(audioFeatures)):
     for k in remove:
         audioFeatures[i].pop(k, None)
@@ -60,6 +60,8 @@ for i in range(len(audioFeatures)):
     time_signature.append(audioFeatures[i]["time_signature"])
     ranking.append(audioFeatures[i]["ranking"])
 
+
+print(danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature)
 pickle.dump((danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature, ranking), open("audio.pkl", "wb"))
 
 
