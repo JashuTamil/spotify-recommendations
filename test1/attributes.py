@@ -41,6 +41,7 @@ for idx, item in enumerate(results["items"]):
                 
 
 audioFeatures = sp.audio_features(audioReading)
+print(audioFeatures)
 for i in range(len(audioFeatures)):
     for k in remove:
         audioFeatures[i].pop(k, None)
