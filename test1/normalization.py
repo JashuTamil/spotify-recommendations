@@ -1,6 +1,9 @@
 import pickle
+from sklearn import preprocessing
 
-def normalizeAtttibute(attribute):
+le = preprocessing.LabelEncoder()
+
+"""def normalizeAtttibute(attribute):
     minimum = min(attribute)
     range = max(attribute) - min(attribute)
     normalized = []
@@ -8,7 +11,10 @@ def normalizeAtttibute(attribute):
         num = i - minimum
         num /= range
         normalized.append(num)
-    return normalized
+    return normalized"""
+
+def normalizeAtttibute(attribute):
+    return le.fit_transform(attribute)
 
 
 audioPickle = open("audio.pkl", "rb")
@@ -32,4 +38,5 @@ ranking = normalizeAtttibute(ranking)
 
 print(danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature, ranking)
 
-pickle.dump((danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature, ranking), open("normalAudio.pkl", "wb"))
+pickle.dump((danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature, ranking), open("normalAudio1.pkl", "wb"))
+
