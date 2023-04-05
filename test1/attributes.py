@@ -2,6 +2,7 @@ import spotipy
 import pickle
 from spotipy.oauth2 import SpotifyOAuth
 import cred
+import playSongs
 
 scope = "user-top-read"
 audioReading = []
@@ -21,12 +22,14 @@ ranking = []
 remove = ["mode", "type", "id", "uri", "track_href", "analysis_url"]
 sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cred.client_ID, client_secret = cred.client_SECRET, redirect_uri = cred.redirect_url, scope = scope))
 
-results = sp.current_user_top_tracks(limit = 50, time_range = "long_term")
+#results = sp.current_user_top_tracks(limit = 50, time_range = "long_term")
 
+results = playSongs.playlistSongs()
 
 for idx, item in enumerate(results["items"]):
     artists = ""
-    tracks = item["id"]
+    # tracks = item["id"]
+    tracks = item['added_by']['id']
     audioReading.append(tracks)
     trackInfo = sp.track(tracks)
 
@@ -61,7 +64,6 @@ for i in range(len(audioFeatures)):
     ranking.append(audioFeatures[i]["ranking"])
 
 
-print(danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature)
 pickle.dump((danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration, time_signature, ranking), open("audio.pkl", "wb"))
 
 
