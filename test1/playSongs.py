@@ -14,12 +14,13 @@ def playlistSongs():
 
     items = sp.playlist_items(id)
     songs = items['items']
+    print(songs)
     
     for i in range(len(songs)):
         id = songs[i]['track']['id']
-        print(id)
         song_id.append(id)
-        
-    print(song_id)
+    
+
+    pickle.dump(song_id, open("song_ids", "wb"))
 
 playlistSongs()
