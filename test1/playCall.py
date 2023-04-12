@@ -5,7 +5,7 @@ import cred
 
 
 def playlistCall():
-    scope = "playlist-read-private"
+    scope = "playlist-modify-private"
     sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cred.client_ID, client_secret = cred.client_SECRET, redirect_uri = cred.redirect_url, scope = scope))
 
     playlists = sp.current_user_playlists()
