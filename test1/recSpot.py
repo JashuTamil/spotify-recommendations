@@ -5,7 +5,6 @@ import cred
 
 file = open("song_ids", "rb")
 song_id = pickle.load(file)
-print(song_id)
 
 
 scope = "playlist-modify-private"
