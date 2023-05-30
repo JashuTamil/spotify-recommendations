@@ -22,6 +22,6 @@ def playlistSongs():
         song_id.append(id)
     
 
-    pickle.dump(song_id, open("song_ids", "wb"))
+    pickle.dump(song_id, open("song_recom", "wb"))
 
 playlistSongs()

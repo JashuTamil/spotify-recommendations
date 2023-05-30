@@ -3,8 +3,9 @@ import pickle
 from spotipy.oauth2 import SpotifyOAuth
 import cred
 
-file = open("song_ids", "rb")
+file = open("song_recom", "rb")
 song_id = pickle.load(file)
+ids = []
 
 songs = []
 scope = "playlist-modify-private"
@@ -12,4 +13,8 @@ sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cred.client_ID, cli
 recom = sp.recommendations(limit = 5, seed_tracks = song_id[0:5])
 
 for i in recom["tracks"]:
-    print(i["id"])
+    ids.append(i["id"])
+
+print(ids)
+
+pickle.dump(ids, open("song_ids", "wb"))
