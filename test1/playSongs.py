@@ -21,6 +21,7 @@ def playlistSongs():
         id = songs[i]['track']['id']
         song_id.append(id)
     
+    print(song_id, len(song_id))
 
     pickle.dump(song_id, open("song_recom", "wb"))
 
