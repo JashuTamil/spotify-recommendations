@@ -73,5 +73,7 @@ link.grid(row = 4, column = 4)
 
 window.mainloop()
 
+pickle.dump(ids, open("song_ids", "wb"))
+
 
 
