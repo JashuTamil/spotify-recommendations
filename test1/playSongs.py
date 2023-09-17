@@ -23,6 +23,8 @@ def playlistSongs():
     
     print(song_id, len(song_id))
 
-    pickle.dump(song_id, open("song_recom", "wb"))
+    file = open("song_ids.txt", "w+")
+    for i in song_id:
+        file.write(i + "\n")
 
 playlistSongs()

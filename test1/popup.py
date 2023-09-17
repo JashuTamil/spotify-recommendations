@@ -6,11 +6,11 @@ import spotipy
 import urllib.request
 from spotipy.oauth2 import SpotifyOAuth
 import cred
-import recSpot
 
 
-file = open("song_ids", "rb")
-ids = pickle.load(file)
+with open("song_ids", "rb") as file:
+    ids = pickle.load(file)
+
 file.close()
 
 scope = "playlist-modify-private"
@@ -18,9 +18,19 @@ sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cred.client_ID, cli
 
 # Failsafe: If there are no songs, the program will call spotRecom to give the IDs of recommended songs
 if len(ids) == 0:
-    recSpot.spotRecom()
-    file = open("song_ids", "rb")
-    ids = pickle.load(file)
+    song_id = []
+    playlists = sp.current_user_playlists()
+    firstPlay = (playlists['items'][0]['id'])
+    items = sp.playlist_items(firstPlay)
+    songs = items['items']
+    for i in range(len(songs)):
+        id = songs[i]['track']['id']
+        song_id.append(id)
+
+    recom = sp.recommendations(limit = 5, seed_tracks = song_id[0:5])
+
+    for i in recom["tracks"]:
+        ids.append(i["id"])
 
 
 # This is all of the details we need to create the window
@@ -73,8 +83,9 @@ link.grid(row = 4, column = 4)
 
 
 window.mainloop()
-file = open("song_ids", "wb")
-pickle.dump(ids, file)
+with open("song_ids", "wb") as file:
+    pickle.dump(ids, file)
+
 file.close()
 
 
