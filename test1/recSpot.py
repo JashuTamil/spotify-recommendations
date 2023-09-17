@@ -6,6 +6,8 @@ import cred
 def spotRecom():
     file = open("song_recom", "rb")
     song_id = pickle.load(file)
+    file.close()
+
     ids = []
 
     songs = []
@@ -17,6 +19,7 @@ def spotRecom():
         ids.append(i["id"])
 
     print(ids)
+    file = open("song_recom", "wb")
     pickle.dump(ids, open("song_ids", "wb"))
 
 if __name__ == "__main__":
