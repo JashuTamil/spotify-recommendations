@@ -23,8 +23,10 @@ def spotRecom():
         ids.append(i["id"])
 
     print(ids)
-    file = open("song_recom", "wb")
-    pickle.dump(ids, open("song_ids", "wb"))
-
+    file = open("song_recom.txt", "w")
+    for i in ids:
+        file.write(i + "\n")
+    file.close()
+    
 if __name__ == "__main__":
     spotRecom()
