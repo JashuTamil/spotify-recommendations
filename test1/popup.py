@@ -7,16 +7,19 @@ import urllib.request
 from spotipy.oauth2 import SpotifyOAuth
 import cred
 
+ids = []
+file = open("song_recom.txt", "r+")
 
-with open("song_ids", "rb") as file:
-    ids = pickle.load(file)
-
-file.close()
+for line in file:
+    print(line)
+    line = line.rstrip("\n")
+    ids.append(line)
+"""
 
 scope = "playlist-modify-private"
 sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cred.client_ID, client_secret = cred.client_SECRET, redirect_uri = cred.redirect_url, scope = scope))
 
-# Failsafe: If there are no songs, the program will call spotRecom to give the IDs of recommended songs
+# Failsafe: If there are no songs, the program will call spotify servers to get song
 if len(ids) == 0:
     song_id = []
     playlists = sp.current_user_playlists()
@@ -32,7 +35,7 @@ if len(ids) == 0:
     for i in recom["tracks"]:
         ids.append(i["id"])
 
-
+print(ids)
 # This is all of the details we need to create the window
 details = sp.track(ids.pop(0))
 songLink = details["external_urls"]["spotify"]
@@ -83,9 +86,12 @@ link.grid(row = 4, column = 4)
 
 
 window.mainloop()
-with open("song_ids", "wb") as file:
-    pickle.dump(ids, file)
+print(ids)
+
+for i in ids:
+    file.write(i + "\n")
 
 file.close()
 
 
+"""
