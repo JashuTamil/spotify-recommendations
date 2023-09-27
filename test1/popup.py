@@ -14,9 +14,10 @@ for line in file:
     print(line)
     line = line.rstrip("\n")
     ids.append(line)
-    
-file.truncate(0)
 
+file.truncate(0)
+# add file seek in here somewhere??
+file.seek(0)
 
 scope = "playlist-modify-private"
 sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id = cred.client_ID, client_secret = cred.client_SECRET, redirect_uri = cred.redirect_url, scope = scope))
