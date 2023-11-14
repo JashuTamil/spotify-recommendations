@@ -1,4 +1,3 @@
-import pickle
 from tkinter import *
 from PIL import Image, ImageTk
 import webbrowser
