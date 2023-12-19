@@ -5,12 +5,24 @@ import spotipy
 import urllib.request
 from spotipy.oauth2 import SpotifyOAuth
 import cred
+import getpass
+import os
+
+USER_NAME = getpass.getuser()
+
+def add_to_startup(file_path=""):
+    if file_path == "":
+        file_path = os.path.dirname(os.path.realpath(__file__))
+    bat_path = r'C:\Users\%s\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup' % USER_NAME
+    with open(bat_path + '\\' + "open.bat", "w+") as bat_file:
+        bat_file.write(r'start "" "%s"' % file_path)
+
+add_to_startup()
 
 ids = []
 file = open("song_recom.txt", "r+")
 
 for line in file:
-    print(line)
     line = line.rstrip("\n")
     ids.append(line)
 
@@ -37,7 +49,6 @@ if len(ids) == 0:
     for i in recom["tracks"]:
         ids.append(i["id"])
 
-print(ids)
 # This is all of the details we need to create the window
 details = sp.track(ids.pop(0))
 songLink = details["external_urls"]["spotify"]
@@ -88,9 +99,10 @@ link.grid(row = 4, column = 4)
 
 
 window.mainloop()
-print(ids)
 
 for i in ids:
     file.write(i + "\n")
 
 file.close()
+
+
